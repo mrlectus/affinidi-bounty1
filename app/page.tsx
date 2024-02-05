@@ -4,7 +4,7 @@ export default async function Home() {
   console.log(user);
   return (
     <main>
-      <a href="/api/auth/login">Login</a>
+      <a href="/api/auth/login">Login {user.nickname}</a>
     </main>
   );
 }
