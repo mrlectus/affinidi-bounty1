@@ -5,7 +5,9 @@ export default async function Home() {
   console.log(user);
   return (
     <main>
-      <a href="/api/auth/login">Login {user?.nickname}</a>
+      <a href="/api/auth/login" className="bg-red-400 text-white">
+        Login {user?.nickname}
+      </a>
     </main>
   );
 }
