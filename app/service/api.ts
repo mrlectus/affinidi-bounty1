@@ -122,7 +122,7 @@ export const sendEmail = async ({ message, email }: Record<string, string>) => {
   return data;
 };
 /**
- * Sends email using third party API 
+ * Sends email using third party API
  */
 
 export const getCountryInfo = async (country: string) => {
@@ -152,7 +152,7 @@ export const getCountryInfo = async (country: string) => {
 
 export const getCurrency = async (symbol: string) => {
   const response = await fetch(
-    `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_CAPI}&base=EUR`
+    `https://mrlectus-stackup-6cd355c4b177.herokuapp.com/exchange`
   );
   const data = await response.json();
   return data.rates[symbol] as number;

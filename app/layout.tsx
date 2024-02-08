@@ -19,12 +19,6 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
-      <head>
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        ></meta>
-      </head>
       <QueryProvider>
         <UserProvider>
           <body>
