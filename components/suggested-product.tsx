@@ -22,10 +22,14 @@ export const SuggestedProduct = () => {
   if (!user.data?.email) return null;
   return (
     <div>
-      <h2 className={cormorant.className + " text-xl font-bold uppercase p-2"}>
+      <h2
+        className={
+          cormorant.className + " text-xl font-bold uppercase p-2 md:px-24"
+        }
+      >
         Suggested Products for <span>{user.data.gender}s</span>
       </h2>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 md:grid md:grid-cols-4 md:px-24 md:justify-center sm:grid sm:grid-cols-2">
         {products?.data
           ?.filter((item) => item.sex === user.data?.gender)
           ?.slice(2)
@@ -33,15 +37,16 @@ export const SuggestedProduct = () => {
             return (
               <Card
                 key={product.id}
-                className="flex flex-col justify-center items-center p-3"
+                className="flex flex-col justify-between items-center p-3"
               >
-                <CardContent className="flex flex-col justify-center items-center">
+                <CardContent className="flex flex-col justify-center items-center md:justify-between">
                   <Image
-                    className="w-auto h-auto"
+                    className="w-48 h-48"
                     src={product.imageUrl}
                     alt={product.name}
                     width={150}
                     height={150}
+                    loading="lazy"
                   />
                   <p>{product.name}</p>
                   <p>
@@ -51,6 +56,7 @@ export const SuggestedProduct = () => {
                 </CardContent>
                 <CardFooter>
                   <Button
+                    disabled={!user.data}
                     onClick={() =>
                       cart.mutate({
                         email: user.data?.email as string,

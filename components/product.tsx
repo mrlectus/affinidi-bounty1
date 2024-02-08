@@ -26,33 +26,39 @@ export const Product = () => {
   const price = currency?.data ? currency.data.toFixed(0) : 1;
   return (
     <div className="p-4">
-      <h2 className={cormorant.className + " text-xl font-bold uppercase p-2"}>
+      <h2
+        className={
+          cormorant.className + " text-xl font-bold uppercase p-2 md:px-24"
+        }
+      >
         Store Products
       </h2>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 md:grid md:grid-cols-4 md:px-24 md:justify-center sm:grid sm:grid-cols-2">
         {products?.isLoading && <StackLoading />}
-        {products?.data?.slice(0, 4).map((product: any) => {
+        {products?.data?.slice(0, 4).map((product) => {
           return (
             <Card
               key={product?.id}
-              className="flex flex-col justify-center items-center p-3"
+              className="flex flex-col justify-between items-center p-3"
             >
-              <CardContent className="flex flex-col justify-center items-center">
+              <CardContent className="flex flex-col justify-center items-center md:justify-between">
                 <Image
-                  className="w-auto h-auto"
+                  className="w-48 h-48"
                   src={product.imageUrl}
                   alt={product.name}
-                  width={150}
-                  height={150}
+                  width={100}
+                  height={100}
+                  loading="lazy"
                 />
-                <p>{product.name}</p>
-                <p>
+                <p className="text-center">{product.name}</p>
+                <p className="flex flex-col text-center justify-between border">
                   {symbol.data?.symbol ? symbol.data.symbol : "$"}
                   {product.price * Number(price)}
                 </p>
               </CardContent>
               <CardFooter>
                 <Button
+                  disabled={!user.data}
                   onClick={() =>
                     cart.mutate({
                       email: user.data?.email as string,

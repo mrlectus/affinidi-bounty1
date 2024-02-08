@@ -21,7 +21,33 @@ export const getUserInfo = async () => {
   const picture = user?.map((p) => p.picture).filter((p) => p !== undefined)[0];
   const gender = user?.map((p) => p.gender).filter((p) => p !== undefined)[0];
   const country = user?.map((p) => p.country).filter((p) => p !== undefined)[0];
-  return { nickname, email, givenName, picture, country, gender };
+  const familyName = user
+    ?.map((p) => p.familyName)
+    .filter((p) => p !== undefined)[0];
+  const phone = user
+    ?.map((p) => p.phoneNumber)
+    .filter((p) => p !== undefined)[0];
+  const address = user
+    ?.map((p) => p.streetAddress)
+    .filter((p) => p !== undefined)[0];
+  const postalCode = user
+    ?.map((p) => p.postalCode)
+    .filter((p) => p !== undefined)[0];
+  const city = user?.map((p) => p.locality).filter((p) => p !== undefined)[0];
+
+  return {
+    nickname,
+    email,
+    givenName,
+    picture,
+    country,
+    gender,
+    familyName,
+    phone,
+    address,
+    postalCode,
+    city,
+  };
 };
 
 export type TProduct = Prisma.ProductGetPayload<{}>;
@@ -99,7 +125,6 @@ export const getCountryInfo = async (country: string) => {
       symbol: currency.symbol,
     };
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -121,5 +146,46 @@ export const getCart = async (email: string) => {
     },
   });
   const data = (await response.json()) as TCartFull[];
+  return data;
+};
+
+export const deleteCart = async (id: number) => {
+  const response = await fetch(`/api/cart/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = (await response.json()) as { message: string };
+  return data;
+};
+
+export const updateCartByID = async ({
+  id,
+  quantity,
+}: {
+  id: number;
+  quantity: number;
+}) => {
+  const response = await fetch(`/api/cart/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ quantity }),
+  });
+  const data = (await response.json()) as { message: string };
+  return data;
+};
+
+export const deleteAllCart = async ({ email }: { email: string }) => {
+  const response = await fetch("/api/checkout", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+  const data = (await response.json()) as { message: string };
   return data;
 };

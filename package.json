@@ -15,6 +15,7 @@
     "@auth0/nextjs-auth0": "^3.5.0",
     "@prisma/client": "5.9.1",
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-query": "^5.18.1",
     "@tanstack/react-query-devtools": "^5.18.1",
@@ -38,6 +39,7 @@
     "postcss": "^8",
     "prisma": "^5.9.1",
     "tailwindcss": "^3.3.0",
+    "tailwindcss-language-server": "^0.0.1",
     "typescript": "^5"
   }
 }

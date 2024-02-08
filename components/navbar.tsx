@@ -10,20 +10,26 @@ export const Navbar = async () => {
   return (
     <nav className="flex md:justify-around md:flex-row bg-[#f5f5f5] shadow-xl min-h-24 py-4 items-center flex-col gap-2">
       <div>
-        <h1 className="text-xl font-bold">StackShop</h1>
+        <Link href="/" className="text-xl font-bold">
+          StackShop
+        </Link>
       </div>
       <div className="flex">
         <ul className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
-          <li>
-            <span className="font-bold">Welcome, </span>
-            {nickname ? nickname : givenName}
-          </li>
-          <li>
-            <Avatar>
-              <AvatarImage src={picture as string} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </li>
+          {email && (
+            <>
+              <li>
+                <span className="font-bold">Welcome, </span>
+                {nickname ? nickname : givenName}
+              </li>
+              <li>
+                <Avatar>
+                  <AvatarImage src={picture as string} />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </li>
+            </>
+          )}
           <li
             className={clsx(
               "flex items-center gap-2 cursor-pointer p-2 rounded-md drop-shadow-lg",

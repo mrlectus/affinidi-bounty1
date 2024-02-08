@@ -1,6 +1,6 @@
 export const StackLoading = () => {
   return (
-    <div className="flex justify-center items-center p-10">
+    <div className="flex justify-center items-center p-10 w-full">
       <p className="flex justify-center items-center font-bold text-xl p-4 rounded-full w-24 h-24 border-4 border-green-500 border-b-0 animate-spin">
         StackUp
       </p>

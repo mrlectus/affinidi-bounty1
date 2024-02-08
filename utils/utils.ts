@@ -16,19 +16,24 @@ export const getUserProfile = async () => {
 };
 
 export const createUser = async (email: string) => {
-  if (email) {
-    const userExist = await prisma.user.findUnique({
-      where: {
-        email: email as string,
-      },
-    });
-    if (!userExist) {
-      await prisma.user.create({
-        data: {
+  try {
+    if (email) {
+      const userExist = await prisma.user.findUnique({
+        where: {
           email: email as string,
         },
       });
-      console.log("User created");
+      if (!userExist) {
+        await prisma.user.create({
+          data: {
+            email: email as string,
+          },
+        });
+      }
     }
+  } catch (e) {
+    throw e;
+  } finally {
+    await prisma.$disconnect();
   }
 };

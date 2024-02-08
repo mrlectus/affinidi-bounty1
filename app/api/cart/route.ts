@@ -53,7 +53,6 @@ export async function POST(request: Request) {
         );
       }
     }
-    console.log(user, user?.email);
     return NextResponse.json({ message: "unauthorized!!" }, { status: 401 });
   } catch (e) {
     throw e;
