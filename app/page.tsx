@@ -1,13 +1,11 @@
-import { getSession } from "@auth0/nextjs-auth0";
-export default async function Home() {
-  const session = await getSession();
-  const user = session?.user;
-  console.log(user);
+import { Product } from "@/components/product";
+import { SuggestedProduct } from "@/components/suggested-product";
+
+export default function Home() {
   return (
     <main>
-      <a href="/api/auth/login" className="bg-red-600 text-white">
-        Login {user?.nickname}
-      </a>
+      <Product />
+      <SuggestedProduct />
     </main>
   );
 }
