@@ -1,6 +1,12 @@
 import { prisma } from "@/storage/prisma";
 import { getSession } from "@auth0/nextjs-auth0";
 
+/**
+ * Gets user profile information from the Auth0 session.
+ *
+ * Returns an object with the user's nickname, email, given name,
+ * and profile picture URL.
+ */
 export const getUserProfile = async () => {
   const session = await getSession();
   const user: Array<Record<string, string | string[]>> = session?.user?.profile;
@@ -15,6 +21,13 @@ export const getUserProfile = async () => {
   return { nickname, email, givenName, picture };
 };
 
+/**
+ * Creates a new user record in the database if one does not already exist with the given email.
+ *
+ * Checks if a user record already exists with the provided email address. If no user exists,
+ * creates a new user record in the database with the email. Handles errors and ensures
+ * database connection is closed.
+ */
 export const createUser = async (email: string) => {
   try {
     if (email) {

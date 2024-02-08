@@ -9,6 +9,10 @@ import { Inter } from "next/font/google";
 const inter = Inter({
   subsets: ["latin"],
 });
+/**
+ * Root layout component.
+ * Provides context providers and global app components.
+ */
 
 export default function RootLayout({
   children,

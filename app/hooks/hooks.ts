@@ -15,6 +15,9 @@ import {
 import { TCart } from "../api/cart/route";
 import toast from "react-hot-toast";
 import { Record } from "@prisma/client/runtime/library";
+/**
+ * Fetches user info from the API.
+ */
 
 export const useGetUser = () => {
   return useQuery({
@@ -22,6 +25,9 @@ export const useGetUser = () => {
     queryFn: getUserInfo,
   });
 };
+/**
+ * Fetches product data from the API.
+ */
 
 export const useGetProducts = () => {
   return useQuery({
@@ -29,6 +35,9 @@ export const useGetProducts = () => {
     queryFn: getProducts,
   });
 };
+/**
+ * Adds a product to the cart.
+ */
 
 export const useAddToCart = () => {
   return useMutation({
@@ -59,6 +68,9 @@ export const useAddToCart = () => {
     },
   });
 };
+/**
+ * Adds a product to the cart.
+ */
 
 export const useGetCountryInfo = (country: string) => {
   return useQuery({
@@ -67,6 +79,9 @@ export const useGetCountryInfo = (country: string) => {
     enabled: !!country,
   });
 };
+/**
+ * Fetches currency information.
+ */
 
 export const useGetCurrency = (currency: string) => {
   return useQuery({

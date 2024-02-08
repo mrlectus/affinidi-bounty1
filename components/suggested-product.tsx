@@ -12,6 +12,12 @@ import { Button } from "./ui/button";
 import { Loading } from "./loading";
 import { cormorant } from "./product";
 
+/**
+ * Renders a section with product suggestions tailored to the logged in user's gender.
+ * Fetches user data, available products, country info, and currency to display relevant prices.
+ * Filters products by user gender and maps them to individual cards with add-to-cart functionality.
+ */
+
 export const SuggestedProduct = () => {
   const user = useGetUser();
   const products = useGetProducts();

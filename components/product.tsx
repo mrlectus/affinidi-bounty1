@@ -17,6 +17,12 @@ export const cormorant = Cormorant_Upright({
   subsets: ["latin", "latin-ext", "vietnamese"],
 });
 
+/**
+ * Renders a list of product cards to display in the store.
+ * Fetches product data, currency conversion, cart interactions.
+ * Uses React hooks for data and cart interactions.
+ */
+
 export const Product = () => {
   const user = useGetUser();
   const products = useGetProducts();

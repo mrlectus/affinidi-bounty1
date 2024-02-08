@@ -13,6 +13,13 @@ import Image from "next/image";
 import { StackLoading } from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+/**
+ * Renders the cart page.
+ *
+ * Fetches and displays the logged in user's cart items.
+ * Provides functionality to delete items from cart.
+ * Displays cart total based on user's country currency.
+ */
 
 const CartPage = () => {
   const user = useGetUser();

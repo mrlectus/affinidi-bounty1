@@ -1,3 +1,7 @@
+/**
+ * Returns a loading indicator component with a spinning border animation.
+ */
+
 export const StackLoading = () => {
   return (
     <div className="flex justify-center items-center p-10 w-full">

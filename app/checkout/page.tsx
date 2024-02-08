@@ -4,6 +4,9 @@ import { Label } from "@/components/ui/label";
 import { useClearCart, useGetUser, useSendEmail } from "../hooks/hooks";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/loading";
+/**
+ * Renders input field for postal code with default value from user data
+ */
 
 const CheckoutPage = () => {
   const user = useGetUser();

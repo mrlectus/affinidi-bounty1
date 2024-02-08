@@ -1,4 +1,9 @@
 import { prisma } from "@/storage/prisma";
+/**
+ * GET handler for /api/products route.
+ *
+ * Retrieves all products from the database and returns them in a JSON response.
+ */
 
 export async function GET() {
   try {

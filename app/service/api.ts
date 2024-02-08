@@ -1,6 +1,9 @@
 import { Prisma } from "@prisma/client";
 import { Record } from "@prisma/client/runtime/library";
 import { TCart } from "../api/cart/route";
+/**
+ * Gets user info from the auth API and returns formatted user data.
+ */
 
 export const getUserInfo = async () => {
   const response = await fetch("/api/auth/me", {
@@ -51,6 +54,12 @@ export const getUserInfo = async () => {
 };
 
 export type TProduct = Prisma.ProductGetPayload<{}>;
+/**
+ * Gets user profile information from the API.
+ *
+ * Returns user details like name, email, address etc.
+ */
+
 export const getProducts = async () => {
   const response = await fetch("/api/products", {
     method: "GET",
@@ -63,6 +72,9 @@ export const getProducts = async () => {
     (a: { id: number }, b: { id: number }) => a.id - b.id
   ) as TProduct[];
 };
+/**
+ * Fetches products data from the API and returns sorted products.
+ */
 
 export const addToCart = async ({
   name,
@@ -91,6 +103,9 @@ export const addToCart = async ({
   const data = await response.json();
   return data;
 };
+/**
+ * Adds product data to cart in database
+ */
 
 export const sendEmail = async ({ message, email }: Record<string, string>) => {
   const response = await fetch(
@@ -106,6 +121,9 @@ export const sendEmail = async ({ message, email }: Record<string, string>) => {
   const data = await response.json();
   return data;
 };
+/**
+ * Sends email using third party API 
+ */
 
 export const getCountryInfo = async (country: string) => {
   try {
@@ -128,6 +146,9 @@ export const getCountryInfo = async (country: string) => {
     throw error;
   }
 };
+/**
+ * Gets currency information from external API
+ */
 
 export const getCurrency = async (symbol: string) => {
   const response = await fetch(
@@ -138,6 +159,10 @@ export const getCurrency = async (symbol: string) => {
 };
 
 export type TCartFull = Prisma.CartGetPayload<{}>;
+/**
+ * Gets cart information for a user from the API
+ */
+
 export const getCart = async (email: string) => {
   const response = await fetch(`/api/cart/${email}`, {
     method: "GET",
@@ -148,6 +173,9 @@ export const getCart = async (email: string) => {
   const data = (await response.json()) as TCartFull[];
   return data;
 };
+/**
+ * Gets cart information for a user from the API
+ */
 
 export const deleteCart = async (id: number) => {
   const response = await fetch(`/api/cart/${id}`, {
@@ -159,6 +187,9 @@ export const deleteCart = async (id: number) => {
   const data = (await response.json()) as { message: string };
   return data;
 };
+/**
+ * Updates cart quantity by cart ID
+ */
 
 export const updateCartByID = async ({
   id,
@@ -177,6 +208,9 @@ export const updateCartByID = async ({
   const data = (await response.json()) as { message: string };
   return data;
 };
+/**
+ * Deletes all cart items for a user
+ */
 
 export const deleteAllCart = async ({ email }: { email: string }) => {
   const response = await fetch("/api/checkout", {

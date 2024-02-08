@@ -10,6 +10,12 @@ export type TCart = {
   email: string;
   productId: number;
 };
+/**
+ * Handles POST request to add item to cart.
+ *
+ * Validates user and cart data. Creates new cart item if it doesn't exist yet.
+ * Returns success or error response.
+ */
 
 export async function POST(request: Request) {
   try {
