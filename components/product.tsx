@@ -9,7 +9,7 @@ import {
   useGetProducts,
   useGetUser,
 } from "@/app/hooks/hooks";
-import { Loading, StackLoading } from "./loading";
+import { StackLoading } from "./loading";
 import { Cormorant_Upright } from "next/font/google";
 
 export const cormorant = Cormorant_Upright({
@@ -65,17 +65,17 @@ export const Product = () => {
               <CardFooter>
                 <Button
                   disabled={!user.data}
-                  onClick={() =>
+                  onClick={() => {
                     cart.mutate({
                       email: user.data?.email as string,
                       ...product,
                       productId: product.id,
                       quantity: 1,
-                    })
-                  }
+                    });
+                  }}
                   className="bg-blue-800"
                 >
-                  {cart.isPending ? <Loading /> : "Add to Cart"}
+                  {"Add to Cart"}
                 </Button>
               </CardFooter>
             </Card>

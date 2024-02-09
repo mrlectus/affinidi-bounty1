@@ -30,7 +30,7 @@ const CartPage = () => {
   const price = currency?.data ? currency.data.toFixed(0) : 1;
   const update = useUpdateCartByID();
 
-  if (cart?.isLoading || cart?.isPending) {
+  if (cart.isLoading || cart?.isPending) {
     return <StackLoading />;
   }
 

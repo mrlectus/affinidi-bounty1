@@ -9,7 +9,6 @@ import {
   useGetUser,
 } from "@/app/hooks/hooks";
 import { Button } from "./ui/button";
-import { Loading } from "./loading";
 import { cormorant } from "./product";
 
 /**
@@ -73,7 +72,7 @@ export const SuggestedProduct = () => {
                     }
                     className="bg-blue-800"
                   >
-                    {cart.isPending ? <Loading /> : "Add to Cart"}
+                    {"Add to Cart"}
                   </Button>
                 </CardFooter>
               </Card>

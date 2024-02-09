@@ -147,15 +147,9 @@ export const useUpdateCartByID = () => {
 };
 
 export const useClearCart = () => {
-  const client = useQueryClient();
   return useMutation({
     mutationKey: ["clear-cart"],
     mutationFn: ({ email }: { email: string }) => deleteAllCart({ email }),
-    onSettled: () => {
-      client.invalidateQueries({
-        queryKey: ["get-cart"],
-      });
-    },
   });
 };
 
