@@ -10,6 +10,7 @@ export type TCart = {
   email: string;
   productId: number;
 };
+
 /**
  * Handles POST request to add item to cart.
  *

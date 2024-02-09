@@ -1,10 +1,13 @@
 import { Prisma } from "@prisma/client";
 import { Record } from "@prisma/client/runtime/library";
 import { TCart } from "../api/cart/route";
-/**
- * Gets user info from the auth API and returns formatted user data.
- */
 
+/**
+ * Gets user profile information from the auth API and returns formatted user data.
+ * Makes a GET request to the /api/auth/me endpoint to get the user's profile.
+ * Maps over the profile records to extract specific fields into a formatted object.
+ * Returns object with nickname, email, name, picture, and other profile fields.
+ */
 export const getUserInfo = async () => {
   const response = await fetch("/api/auth/me", {
     method: "GET",
@@ -54,12 +57,10 @@ export const getUserInfo = async () => {
 };
 
 export type TProduct = Prisma.ProductGetPayload<{}>;
-/**
- * Gets user profile information from the API.
- *
- * Returns user details like name, email, address etc.
- */
 
+/**
+ * Fetches products from the API and returns them sorted by ID.
+ */
 export const getProducts = async () => {
   const response = await fetch("/api/products", {
     method: "GET",
@@ -72,10 +73,21 @@ export const getProducts = async () => {
     (a: { id: number }, b: { id: number }) => a.id - b.id
   ) as TProduct[];
 };
-/**
- * Fetches products data from the API and returns sorted products.
- */
 
+/**
+ * Adds a product to the cart.
+ *
+ * @param param0 - The cart item details.
+ * @param param0.name - The product name.
+ * @param param0.price - The product price.
+ * @param param0.sex - The product sex.
+ * @param param0.imageUrl - The product image URL.
+ * @param param0.quantity - The quantity to add.
+ * @param param0.email - The user's email.
+ * @param param0.productId - The product ID.
+ *
+ * @returns The updated cart data.
+ */
 export const addToCart = async ({
   name,
   price,
@@ -103,10 +115,15 @@ export const addToCart = async ({
   const data = await response.json();
   return data;
 };
-/**
- * Adds product data to cart in database
- */
 
+/**
+ * Sends an email via the API.
+ *
+ * @param message - The message text to send in the email.
+ * @param email - The recipient email address.
+ *
+ * @returns The API response.
+ */
 export const sendEmail = async ({ message, email }: Record<string, string>) => {
   const response = await fetch(
     `https://mrlectus-stackup-6cd355c4b177.herokuapp.com/send`,
@@ -121,10 +138,14 @@ export const sendEmail = async ({ message, email }: Record<string, string>) => {
   const data = await response.json();
   return data;
 };
-/**
- * Sends email using third party API
- */
 
+/**
+ * Fetches country currency information from OpenCage Geocoding API.
+ *
+ * @param country - The country name to lookup currency info for
+ * @returns The ISO code and symbol for the given country's currency
+ * @throws Error on failed API response
+ */
 export const getCountryInfo = async (country: string) => {
   try {
     const response = await fetch(
@@ -146,6 +167,7 @@ export const getCountryInfo = async (country: string) => {
     throw error;
   }
 };
+
 /**
  * Gets currency information from external API
  */
@@ -159,10 +181,10 @@ export const getCurrency = async (symbol: string) => {
 };
 
 export type TCartFull = Prisma.CartGetPayload<{}>;
-/**
- * Gets cart information for a user from the API
- */
 
+/**
+ * Gets cart data for a user from the API by email.
+ */
 export const getCart = async (email: string) => {
   const response = await fetch(`/api/cart/${email}`, {
     method: "GET",
@@ -173,10 +195,10 @@ export const getCart = async (email: string) => {
   const data = (await response.json()) as TCartFull[];
   return data;
 };
-/**
- * Gets cart information for a user from the API
- */
 
+/**
+ * Deletes a cart by ID from the API
+ */
 export const deleteCart = async (id: number) => {
   const response = await fetch(`/api/cart/${id}`, {
     method: "DELETE",
@@ -187,6 +209,7 @@ export const deleteCart = async (id: number) => {
   const data = (await response.json()) as { message: string };
   return data;
 };
+
 /**
  * Updates cart quantity by cart ID
  */
@@ -208,6 +231,7 @@ export const updateCartByID = async ({
   const data = (await response.json()) as { message: string };
   return data;
 };
+
 /**
  * Deletes all cart items for a user
  */

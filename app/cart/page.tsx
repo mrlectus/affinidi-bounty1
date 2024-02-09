@@ -13,6 +13,7 @@ import Image from "next/image";
 import { StackLoading } from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
 /**
  * Renders the cart page.
  *
