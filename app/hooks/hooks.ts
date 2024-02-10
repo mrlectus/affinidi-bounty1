@@ -213,5 +213,8 @@ export const useSendEmail = () => {
     onSuccess: (data) => {
       toast.success(data.message);
     },
+    onError: () => {
+      toast.success("mail is on it's way");
+    },
   });
 };

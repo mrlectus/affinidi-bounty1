@@ -8,6 +8,7 @@ Affinidi Vault enables you to discover, collect, store, share, and monetise your
 Here am going to be using Affinidi to add more features to the Project (Online shopping store)
 
 ## Stack
+
 - Nextjs
 - Tailwindcss
 - ShadcnUI
